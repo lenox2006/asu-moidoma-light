@@ -1,0 +1,49 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: asu-mydoma-light:latest
+    container_name: asu-light-app
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      # Внешний порт сервера (82.114.226.241:3333) → nginx внутри контейнера
+      - "${APP_PORT:-3333}:80"
+    volumes:
+      - app_storage:/var/www/html/storage
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - asu-light
+
+  db:
+    image: postgres:16-alpine
+    container_name: asu-light-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-asu_light}
+      POSTGRES_USER: ${DB_USERNAME:-asu_light}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Задайте DB_PASSWORD в .env}
+      TZ: Europe/Moscow
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-asu_light} -d ${DB_DATABASE:-asu_light}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - asu-light
+    # БД наружу не публикуется; для отладки можно раскомментировать:
+    # ports:
+    #   - "127.0.0.1:5433:5432"
+
+volumes:
+  db_data:
+  app_storage:
+
+networks:
+  asu-light:
+    driver: bridge

@@ -1,0 +1,9 @@
+.env
+frontend/node_modules
+mobile/node_modules
+mobile2/node_modules
+backend/vendor
+backend/public/app
+backend/public/m
+backend/public/m2
+*.log

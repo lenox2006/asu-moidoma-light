@@ -1,0 +1,41 @@
+/* ProximaNova — шрифты основной системы АСУ «Мои Дома» */
+@font-face {
+    font-family: 'ProximaNova';
+    src: local('ProximaNova Light'), local('ProximaNova-Light'),
+    url('/app/fonts/light_aee13ii.woff2') format('woff2'),
+    url('/app/fonts/light_aee13ii.woff') format('woff'),
+    url('/app/fonts/light_aee13ii.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 300;
+    font-display: block;
+}
+@font-face {
+    font-family: 'ProximaNova';
+    src: local('ProximaNova Regular'), local('ProximaNova-Regular'),
+    url('/app/fonts/regulr_97avv4l.woff2') format('woff2'),
+    url('/app/fonts/regulr_97avv4l.woff') format('woff'),
+    url('/app/fonts/regulr_97avv4l.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+}
+@font-face {
+    font-family: 'ProximaNova';
+    src: local('ProximaNova Semibold'), local('ProximaNova-Semibold'),
+    url('/app/fonts/smbold_hjr52s7.woff2') format('woff2'),
+    url('/app/fonts/smbold_hjr52s7.woff') format('woff'),
+    url('/app/fonts/smbold_hjr52s7.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 600;
+    font-display: block;
+}
+@font-face {
+    font-family: 'ProximaNova';
+    src: local('ProximaNova Bold'), local('ProximaNova-Bold'),
+    url('/app/fonts/bold_g112aev.woff2') format('woff2'),
+    url('/app/fonts/bold_g112aev.woff') format('woff'),
+    url('/app/fonts/bold_g112aev.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 700;
+    font-display: block;
+}

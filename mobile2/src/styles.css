@@ -1,0 +1,186 @@
+/* АСУ «Мои Дома» Light — мобильная версия, тема «Мой Дом 24».
+   Токены перенесены из Android-приложения (res/values/colors.xml, styles.xml, dimens.xml). */
+:root {
+  --color-accent: #3863D2;          /* core */
+  --color-accent-dark: #2D3DEC;     /* azure_blue */
+  --color-accent-40: #B0C1ED;       /* core_40 */
+  --color-accent-bg: #F3F7FF;       /* core_background */
+  --color-bg: #F8F8FA;              /* white_background / substrate */
+  --color-surface: #FFFFFF;
+  --color-text: #141F29;            /* black */
+  --color-text-secondary: #757B85;  /* gray_dark */
+  --color-text-muted: #B0B5BF;      /* gray_medium */
+  --color-line: #E9EBF0;            /* gray_light */
+  --color-gray: #DDE0E6;            /* gray */
+  --color-field: #F5F5F5;           /* bg_edit_text */
+  --color-field-border: #E0E0E0;
+  --color-chip: #F3F4F6;            /* bg_filter_chip */
+  --color-green: #63B53C; --color-green-bg: #EBFBE4;
+  --color-orange: #F68A4D; --color-orange-bg: #FFF4EE;
+  --color-red: #DF4238; --color-red-bg: #FFF6F6;
+  --color-blue-bg: #ECF7FD;
+  --color-purple: #8D70DF; --color-purple-bg: #F8F6FF;
+  --radius-sm: 8px;    /* bg_edit_text */
+  --radius-md: 10px;   /* ShapeAppearance.SmallComponent, кнопки */
+  --radius-card: 12px; /* bg_shape_rounded_12dp */
+  --radius-lg: 16px;   /* bg_shape_rounded_16dp */
+  --radius-chip: 20px; /* bg_filter_chip */
+  --font: Roboto, -apple-system, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { font-family: var(--font); font-size: 17px; line-height: 1.35; color: var(--color-text); background: var(--color-bg); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
+button, input, select { font: inherit; }
+a { color: var(--color-accent); text-decoration: none; }
+input::placeholder { color: var(--color-text-muted); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ---------- Каркас ---------- */
+.screen { min-height: 100%; display: flex; flex-direction: column; }
+.screen-scroll { flex: 1; overflow: auto; padding: 8px 16px calc(16px + var(--safe-bottom)); display: flex; flex-direction: column; gap: 8px; -webkit-overflow-scrolling: touch; }
+.screen-scroll.has-tabbar { padding-bottom: calc(92px + var(--safe-bottom)); }
+
+/* ---------- App bar (Widget.MyDom.AppBarLayout: surface, elevation 0) ---------- */
+.navbar { position: sticky; top: 0; z-index: 10; background: var(--color-surface); padding: calc(8px + var(--safe-top)) 16px 12px; display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid var(--color-line); }
+.navbar-row { display: flex; align-items: center; gap: 8px; min-height: 48px; }
+.navbar-back { width: 48px; height: 48px; margin-left: -12px; display: flex; align-items: center; justify-content: center; color: var(--color-text); background: none; border: 0; border-radius: 24px; cursor: pointer; flex-shrink: 0; }
+.navbar-back:active { background: var(--color-line); }
+.navbar-titles { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.navbar-title { font-size: 20px; font-weight: 500; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }   /* text_size_title, sans-serif-medium */
+.navbar-title.accent { font-size: 24px; color: var(--color-text); }                                                                      /* text_size_h2 */
+.navbar-sub { font-size: 14px; color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }     /* subhead */
+.navbar-brand { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.icon-btn { width: 44px; height: 44px; border: 0; border-radius: 22px; background: var(--color-chip); color: var(--color-accent); display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; flex-shrink: 0; }
+.icon-btn:active { background: var(--color-gray); }
+.icon-btn.plain { background: transparent; }
+.icon-btn.filled { background: var(--color-accent); color: #fff; }
+.icon-btn:disabled { opacity: 0.4; cursor: default; }
+.badge { position: absolute; top: -3px; right: -3px; min-width: 18px; height: 18px; border-radius: 9px; background: var(--color-red); color: #fff; font-size: 11px; font-weight: 500; display: flex; align-items: center; justify-content: center; padding: 0 5px; }
+
+/* ---------- Поиск (bg_edit_text), сегменты (bg_filter_chip), чипы ---------- */
+.search { position: relative; display: flex; align-items: center; }
+.search input { width: 100%; height: 48px; border: 1px solid var(--color-field-border); border-radius: var(--radius-sm); padding: 0 44px 0 14px; background: var(--color-field); color: var(--color-text); outline: none; -webkit-appearance: none; font-size: 17px; }
+.search input:focus { border-color: var(--color-accent); background: var(--color-surface); }
+.search svg { position: absolute; right: 14px; pointer-events: none; }
+.hscroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+.hscroll::-webkit-scrollbar { display: none; }
+.segment { height: 36px; padding: 0 16px; border-radius: var(--radius-chip); border: 0; background: var(--color-chip); color: var(--color-text); font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer; flex-shrink: 0; }
+.segment[aria-pressed="true"] { background: var(--color-accent); color: #fff; }
+.crumb { height: 32px; padding: 0 14px; border-radius: var(--radius-chip); background: var(--color-chip); color: var(--color-text-secondary); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; white-space: nowrap; border: 0; cursor: pointer; flex-shrink: 0; }
+.crumb.current { background: var(--color-accent-bg); color: var(--color-accent); cursor: default; }
+
+/* ---------- Список: карточки bg_shape_rounded_16dp без рамки ---------- */
+.list-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 4px 2px; font-size: 12px; color: var(--color-text-secondary); }
+.list-meta b { color: var(--color-text); font-weight: 500; }
+.row { display: flex; align-items: center; gap: 12px; background: var(--color-surface); border: 0; border-radius: var(--radius-lg); padding: 16px; color: var(--color-text); min-height: 74px; width: 100%; text-align: left; cursor: pointer; }
+.row:active { background: var(--color-accent-bg); }
+.row-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.row-title { font-size: 17px; font-weight: 500; line-height: 1.3; }   /* body 17sp medium */
+.row-meta { font-size: 14px; color: var(--color-text-secondary); display: flex; gap: 10px; flex-wrap: wrap; }
+.row-meta b { color: var(--color-text); font-weight: 500; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); background: var(--color-chip); border-radius: 6px; padding: 4px 8px; white-space: nowrap; }
+.tag.accent { color: var(--color-accent); background: var(--color-accent-bg); }
+.tag.ok { color: var(--color-green); background: var(--color-green-bg); }
+.tag.muted { color: var(--color-text-secondary); background: var(--color-line); }
+.chev { color: var(--color-text-muted); flex-shrink: 0; }
+.avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--color-accent-bg); color: var(--color-accent); font-size: 16px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+/* ---------- Состояния ---------- */
+.state { background: var(--color-surface); border: 0; border-radius: var(--radius-lg); padding: 32px 16px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; color: var(--color-text-secondary); font-size: 14px; }
+.state-title { font-size: 17px; font-weight: 500; color: var(--color-text); }
+.skeleton { background: var(--color-surface); border-radius: var(--radius-lg); padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.skeleton span { display: block; height: 14px; border-radius: 7px; background: var(--color-line); animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.45; } }
+.error-card { background: var(--color-red-bg); border-radius: var(--radius-lg); padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
+.error-title { font-size: 15px; font-weight: 500; color: var(--color-red); }
+.error-text { font-size: 14px; color: var(--color-text); line-height: 1.4; margin-top: 4px; }
+
+/* ---------- Кнопки (Widget.MyDom.Button: contained, radius 10, 17sp medium, без капса) ---------- */
+.btn { height: 52px; padding: 0 20px; border-radius: var(--radius-md); border: 1px solid transparent; background: var(--color-accent); color: #fff; font-size: 17px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; width: 100%; }
+.btn:active { background: var(--color-accent-dark); }
+.btn:disabled { background: #E2E2E2; color: var(--color-text-secondary); cursor: default; }
+.btn.outline { background: var(--color-surface); color: var(--color-accent); border-color: var(--color-accent); }
+.btn.danger { background: var(--color-surface); color: var(--color-red); border-color: var(--color-red); }
+.btn.small { height: 40px; padding: 0 16px; font-size: 15px; width: auto; }
+.btn.sm-danger { background: var(--color-red); color: #fff; border-color: var(--color-red); }
+.btn-text { background: none; border: 0; color: var(--color-accent); font-size: 15px; font-weight: 500; cursor: pointer; padding: 0 10px; height: 36px; }
+.btn-text:disabled { color: var(--color-text-muted); cursor: default; }
+
+/* ---------- Карточка / поля ---------- */
+.card { background: var(--color-surface); border: 0; border-radius: var(--radius-lg); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.card-head { font-size: 17px; font-weight: 500; color: var(--color-text); padding-bottom: 10px; border-bottom: 1px solid var(--color-line); }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.field { display: flex; flex-direction: column; gap: 4px; justify-content: flex-end; }
+.field label, .field .label { font-size: 12px; color: var(--color-text-secondary); }
+.field .value { background: var(--color-bg); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 17px; font-weight: 500; min-height: 46px; overflow-wrap: anywhere; }
+.field .value.empty { font-weight: 400; color: var(--color-text-muted); }
+.field input, .field select { height: 48px; border: 1px solid var(--color-field-border); border-radius: var(--radius-sm); padding: 0 14px; background: var(--color-field); color: var(--color-text); outline: none; -webkit-appearance: none; width: 100%; }
+.field input:focus, .field select:focus { border-color: var(--color-accent); background: var(--color-surface); }
+.field .err { font-size: 12px; color: var(--color-red); }
+.field .hint { font-size: 12px; color: var(--color-text-secondary); line-height: 1.4; }
+.stat { display: flex; flex-direction: column; gap: 2px; }
+.stat b { font-size: 24px; font-weight: 500; color: var(--color-accent); }   /* h2 24sp */
+.stat span { font-size: 12px; color: var(--color-text-secondary); }
+.actual { font-size: 12px; color: var(--color-text-secondary); text-align: right; padding: 0 4px; }
+.section-label { font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin-top: 8px; }
+.tabs { display: flex; gap: 24px; }
+.tab { padding: 6px 0 10px; font-size: 15px; font-weight: 500; color: var(--color-accent); border-bottom: 2px solid var(--color-accent); }
+
+/* ---------- Мультивыбор ---------- */
+.picker { border: 1px solid var(--color-field-border); border-radius: var(--radius-sm); background: var(--color-field); padding: 8px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chip { display: inline-flex; align-items: center; gap: 4px; height: 34px; padding: 0 4px 0 14px; border-radius: var(--radius-chip); background: var(--color-surface); border: 1px solid var(--color-gray); color: var(--color-text); font-size: 14px; font-weight: 500; max-width: 100%; }
+.chip span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chip button { width: 28px; height: 28px; border: 0; border-radius: 14px; background: transparent; color: var(--color-text-secondary); display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+.chip-add { height: 34px; padding: 0 14px; border-radius: var(--radius-chip); border: 0; background: var(--color-accent-bg); color: var(--color-accent); font-size: 14px; font-weight: 500; cursor: pointer; }
+.switch-row { display: flex; align-items: center; justify-content: space-between; background: var(--color-surface); border: 0; border-radius: var(--radius-lg); padding: 14px 16px; font-size: 17px; }
+/* Widget.MyDom.CompoundButton.Switch */
+.switch { position: relative; width: 52px; height: 32px; flex-shrink: 0; }
+.switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+.switch .track { position: absolute; inset: 0; border-radius: 16px; background: var(--color-gray); transition: background 0.15s; cursor: pointer; }
+.switch .track::after { content: ''; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.25); transition: left 0.15s; }
+.switch input:checked + .track { background: var(--color-accent); }
+.switch input:checked + .track::after { left: 23px; }
+
+/* ---------- Bottom navigation (Widget.MyDom.BottomNavigationView) ---------- */
+.tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--color-surface); border-top: 1px solid var(--color-line); padding: 6px 8px calc(6px + var(--safe-bottom)); display: flex; justify-content: space-around; }
+.tabbar a { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 88px; padding: 6px 0; color: var(--color-text-muted); font-size: 12px; font-weight: 500; }
+.tabbar a.active { color: var(--color-accent); }
+
+/* ---------- Bottom sheet (bg_shape_rounded_top_12dp) ---------- */
+.sheet-backdrop { position: fixed; inset: 0; z-index: 20; background: rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; justify-content: flex-end; }   /* half_transparent */
+.sheet { background: var(--color-surface); border-radius: 12px 12px 0 0; padding: 8px 0 calc(24px + var(--safe-bottom)); max-height: 85vh; overflow: auto; }
+.sheet-grip { width: 40px; height: 4px; border-radius: 2px; background: var(--color-gray); margin: 4px auto 16px; }
+.sheet-head { display: flex; align-items: center; justify-content: space-between; padding: 0 16px 12px; font-size: 20px; font-weight: 500; }
+.sheet-opt { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 56px; padding: 0 16px; border: 0; border-bottom: 1px solid var(--color-line); background: transparent; font-size: 17px; color: var(--color-text); cursor: pointer; text-align: left; }
+.sheet-opt[aria-pressed="true"] { font-weight: 500; color: var(--color-accent); }
+.sheet-opt small { color: var(--color-text-muted); font-weight: 400; }
+.sheet-foot { padding: 20px 16px 0; display: flex; flex-direction: column; gap: 12px; }
+
+/* ---------- Логин (bg_splash_screen: белый фон, логотип по центру) ---------- */
+.login { min-height: 100%; display: flex; flex-direction: column; padding: calc(96px + var(--safe-top)) 20px calc(32px + var(--safe-bottom)); background: var(--color-surface); }
+.login-logo { width: 96px; height: 96px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+.login-logo img { width: 96px; height: 96px; border-radius: 22px; }
+.login-title { font-size: 34px; font-weight: 500; text-align: center; text-transform: none; letter-spacing: 0; }   /* h1 34sp */
+.login-sub { font-size: 15px; color: var(--color-text-secondary); text-align: center; margin-top: 4px; letter-spacing: 0; font-weight: 400; }
+.login form { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; }
+.login .field input { height: 52px; font-size: 17px; }
+.login-foot { margin-top: auto; text-align: center; font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; padding-top: 24px; }
+
+/* ---------- Профиль ---------- */
+.menu-list { background: var(--color-surface); border: 0; border-radius: var(--radius-lg); overflow: hidden; }
+.menu-item { display: flex; align-items: center; gap: 12px; padding: 16px; border-bottom: 1px solid var(--color-line); color: var(--color-text); width: 100%; background: none; border-left: 0; border-right: 0; border-top: 0; font-size: 17px; cursor: pointer; text-align: left; }
+.menu-item:last-child { border-bottom: 0; }
+.menu-item.danger { color: var(--color-red); }
+.kv { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--color-line); }
+.kv:last-child { border-bottom: 0; }
+.kv span { font-size: 14px; color: var(--color-text-secondary); }
+.kv b { font-size: 15px; font-weight: 500; text-align: right; }
+
+@media (min-width: 560px) {
+  #root { max-width: 520px; margin: 0 auto; box-shadow: 0 0 0 1px var(--color-line); background: var(--color-bg); }
+  .tabbar { max-width: 520px; margin: 0 auto; }
+}
