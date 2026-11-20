@@ -1,3 +1,4 @@
+import { normalizeNames } from '../lib/format';
 // Тонкий HTTP-клиент к backend (Laravel). Токен Sanctum хранится в localStorage.
 
 const TOKEN_KEY = 'asu_light_token';
@@ -63,8 +64,8 @@ export const api = {
   logout: () => request('POST', '/api/auth/logout'),
   me: () => request('GET', '/api/auth/me'),
 
-  houses: (mark) => request('GET', `/api/houses?mark=${encodeURIComponent(mark || '')}`),
-  houseCard: (buildId, mark) => request('GET', `/api/houses/card?build_id=${encodeURIComponent(buildId)}&mark=${encodeURIComponent(mark || '')}`),
+  houses: (mark) => request('GET', `/api/houses?mark=${encodeURIComponent(mark || '')}`).then(normalizeNames),
+  houseCard: (buildId, mark) => request('GET', `/api/houses/card?build_id=${encodeURIComponent(buildId)}&mark=${encodeURIComponent(mark || '')}`).then(normalizeNames),
 
   users: () => request('GET', '/api/users'),
   createUser: (payload) => request('POST', '/api/users', payload),

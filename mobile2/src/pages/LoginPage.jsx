@@ -32,7 +32,7 @@ export default function LoginPage() {
     <div className="login">
       <div className="login-logo"><Logo size={96} /></div>
       <div className="login-title">Мои Дома</div>
-      <div className="login-sub">АСУ «Мои Дома» Light · вход для сотрудников</div>
+      <div className="login-sub">АСУ «Мои Дома» Light</div>
       <form onSubmit={onSubmit}>
         <div className="field">
           <label htmlFor="login">Логин</label>

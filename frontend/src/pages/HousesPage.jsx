@@ -15,7 +15,7 @@ import { api } from '../api/client';
 import { useAuth } from '../lib/auth';
 import { getCrumbs, rememberCrumbs } from '../lib/crumbs';
 import { exportCsv } from '../lib/csv';
-import { fmtArea, fmtDateTime, fmtInt, LEVEL_TITLES } from '../lib/format';
+import { fmtArea, fmtInt, LEVEL_TITLES } from '../lib/format';
 import CardWrapper from '../ui/CardWrapper';
 import FilterChips from '../ui/FilterChips';
 import HeadingBlock from '../ui/HeadingBlock';
@@ -266,11 +266,6 @@ export default function HousesPage() {
                     <Box style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-between' }}>
                         <Box>
                             <div>Найдено: {loading ? '…' : filtered.length}</div>
-                            {data?.fetched_at ? (
-                                <Typography variant="body2" sx={{ color: '#939393' }}>
-                                    Данные получены {fmtDateTime(data.fetched_at)}
-                                </Typography>
-                            ) : null}
                         </Box>
 
                         <Box style={{ display: 'flex', flexDirection: 'row' }}>

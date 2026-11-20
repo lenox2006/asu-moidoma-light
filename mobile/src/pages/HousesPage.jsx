@@ -9,7 +9,7 @@ import TabBar from '../components/TabBar';
 import { useAuth } from '../lib/auth';
 import { getCrumbs, rememberCrumbs } from '../lib/crumbs';
 import { exportCsv } from '../lib/csv';
-import { fmtArea, fmtDateTime, fmtInt, LEVEL_TITLES } from '../lib/format';
+import { fmtArea, fmtInt, LEVEL_TITLES } from '../lib/format';
 
 /**
  * Один экран для всех уровней: Регионы → УК → Улицы → Дома.
@@ -146,7 +146,7 @@ export default function HousesPage() {
       <main className="screen-scroll has-tabbar">
         {!loading && !error ? (
           <div className="list-meta">
-            <div>Найдено: <b>{filtered.length}</b>{data?.fetched_at ? ` · ${fmtDateTime(data.fetched_at)}` : ''}</div>
+            <div>Найдено: <b>{filtered.length}</b></div>
             {showTotals && filtered.length ? <div>Итого: <b>{fmtInt(totals.mkd) || 0} МКД{totals.area ? ` · ${fmtArea(totals.area)} м²` : ''}</b></div> : null}
           </div>
         ) : null}

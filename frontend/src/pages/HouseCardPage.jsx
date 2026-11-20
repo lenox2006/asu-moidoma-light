@@ -12,7 +12,7 @@ import HouseIcon from '../icons/House';
 import { useAuth } from '../lib/auth';
 import { getCrumbs } from '../lib/crumbs';
 import { BILLING, dict, MANAGEMENT_TYPE, UK_BRANCH } from '../lib/dictionaries';
-import { fmtAreaExact, fmtDateTime, fmtIntZero, fmtText } from '../lib/format';
+import { fmtAreaExact, fmtIntZero, fmtText } from '../lib/format';
 import CardAsu from '../ui/CardAsu';
 import CardSubheading from '../ui/CardSubheading';
 import CardWrapper from '../ui/CardWrapper';
@@ -244,13 +244,6 @@ export default function HouseCardPage() {
                             {city ? <Typography variant="h2">({city})</Typography> : null}
                         </Box>
                     </Box>
-                    {data?.fetched_at ? (
-                        <Box sx={{ position: 'absolute', right: 0, bottom: 24 }}>
-                            <Typography variant="body2" color="primary" sx={{ fontWeight: 600 }}>
-                                Актуально на {fmtDateTime(data.fetched_at)}
-                            </Typography>
-                        </Box>
-                    ) : null}
                 </Box>
 
                 {error ? <Box sx={{ color: 'error.main', mb: 2 }}>{error}</Box> : null}

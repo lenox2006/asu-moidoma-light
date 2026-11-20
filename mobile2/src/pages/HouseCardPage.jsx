@@ -6,7 +6,7 @@ import { ErrorCard, Loading } from '../components/States';
 import { useAuth } from '../lib/auth';
 import { getCrumbs } from '../lib/crumbs';
 import { BILLING, dict, MANAGEMENT_TYPE, UK_BRANCH } from '../lib/dictionaries';
-import { fmtAreaExact, fmtDateTime, fmtIntZero, fmtText } from '../lib/format';
+import { fmtAreaExact, fmtIntZero, fmtText } from '../lib/format';
 
 /* Поля getHouseById — см. веб-версию (frontend/src/pages/HouseCardPage.jsx), логика идентична. */
 
@@ -130,7 +130,6 @@ export default function HouseCardPage() {
       </NavBar>
 
       <main className="screen-scroll">
-        {data?.fetched_at ? <div className="actual">Актуально на {fmtDateTime(data.fetched_at)}</div> : null}
         {error ? <ErrorCard message={error} onRetry={() => setReload((n) => n + 1)} /> : null}
         {!ready ? <Loading rows={3} /> : null}
 
