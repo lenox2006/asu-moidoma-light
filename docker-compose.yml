@@ -10,7 +10,7 @@ services:
     ports:
       # Внешний порт сервера (82.114.226.241:3333) → nginx внутри контейнера
       #- "${APP_PORT:-3333}:80"
-      - "127.0.0.1:3333:80"
+      - "3333:80"
     volumes:
       - app_storage:/var/www/html/storage
     depends_on:
