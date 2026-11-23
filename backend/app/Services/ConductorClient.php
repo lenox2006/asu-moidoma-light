@@ -63,6 +63,29 @@ class ConductorClient
     }
 
     /**
+     * Аналитика «Движение жилого фонда» (вкладка «Аналитика» в приложении).
+     *
+     * params: period, from, to, step, region_id, uk_id, group_by, include.
+     * Ответ: { period, scope, summary, groups[], series[] , generated_at }.
+     *
+     * @param  array<string, mixed>  $params
+     * @return array<string, mixed>
+     *
+     * @throws ConductorException
+     */
+    public function analyticsHousingMoving(array $params): array
+    {
+        $payload = $this->call('analyticsHousingMoving', $params);
+
+        $result = $payload['result'] ?? null;
+        if (! is_array($result)) {
+            throw new ConductorException('Кондуктор вернул ответ без поля result');
+        }
+
+        return $result;
+    }
+
+    /**
      * Универсальный вызов метода кондуктора.
      *
      * @param  array<string, mixed>  $params

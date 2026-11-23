@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\UserController;
@@ -17,6 +18,9 @@ Route::middleware(['auth:sanctum', EnsureUserIsActive::class])->group(function (
     // Данные по домам (прокси к кондуктору, без кэша)
     Route::get('houses', [HouseController::class, 'index']);
     Route::get('houses/card', [HouseController::class, 'card']);
+
+    // Аналитика: движение жилого фонда
+    Route::get('analytics/housing-movement', [AnalyticsController::class, 'housingMovement']);
 
     // Управление пользователями — только superadmin
     Route::middleware('superadmin')->group(function () {
