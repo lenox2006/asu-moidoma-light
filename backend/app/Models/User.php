@@ -75,6 +75,23 @@ class User extends Authenticatable
     }
 
     /**
+     * Все разрешённые УК пользователя. Пустой массив — ограничения по УК нет.
+     *
+     * @return int[]
+     */
+    public function ukIds(): array
+    {
+        $ids = [];
+        foreach (is_array($this->uks) ? $this->uks : [] as $uk) {
+            if (isset($uk['id'])) {
+                $ids[] = (int) $uk['id'];
+            }
+        }
+
+        return array_values(array_unique($ids));
+    }
+
+    /**
      * Идентификаторы разрешённых УК региона. Пустой массив — ограничения по УК нет.
      *
      * @return int[]

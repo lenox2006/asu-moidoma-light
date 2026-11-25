@@ -21,7 +21,7 @@ use Illuminate\Validation\ValidationException;
  */
 class AnalyticsController extends Controller
 {
-    private const PRESETS = ['month', 'half_year', 'ytd', 'year', 'custom'];
+    private const PRESETS = ['month', 'quarter', 'half_year', 'ytd', 'year', 'custom'];
 
     private const STEPS = ['week', 'month', 'quarter'];
 
@@ -123,10 +123,17 @@ class AnalyticsController extends Controller
 
         $allowedRegions = $user->regionIds();
 
-        $groups = array_filter($groups, static function (array $g) use ($allowedRegions) {
+        $allowedUks = $user->ukIds();
+
+        $groups = array_filter($groups, static function (array $g) use ($allowedRegions, $allowedUks) {
             $kind = (string) ($g['kind'] ?? 'region');
 
-            return $kind !== 'region' || in_array((string) ($g['id'] ?? ''), $allowedRegions, true);
+            // при group_by=uk кондуктор отдаёт группы-УК: проверяем их по списку доступных УК
+            if ($kind === 'uk') {
+                return $allowedUks === [] || in_array((int) ($g['id'] ?? 0), $allowedUks, true);
+            }
+
+            return in_array((string) ($g['id'] ?? ''), $allowedRegions, true);
         });
 
         return array_values(array_map(function (array $g) use ($user, $normalize) {
