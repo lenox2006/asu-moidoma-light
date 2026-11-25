@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './lib/auth';
+import AnalyticsPage from './pages/AnalyticsPage';
 import HouseCardPage from './pages/HouseCardPage';
 import HousesPage from './pages/HousesPage';
 import LoginPage from './pages/LoginPage';
@@ -28,6 +29,7 @@ export default function App() {
           <Route element={<RequireAuth />}>
             <Route path="/houses" element={<HousesPage />} />
             <Route path="/house" element={<HouseCardPage />} />
+            <Route path="/analytics" element={<AnalyticsPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route element={<RequireSuperadmin />}>
               <Route path="/users" element={<UsersPage />} />

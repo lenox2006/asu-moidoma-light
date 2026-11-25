@@ -181,3 +181,119 @@ input::placeholder { color: var(--color-text-muted); }
   #root { max-width: 520px; margin: 0 auto; box-shadow: 0 0 0 1px var(--color-line); background: var(--color-bg); }
   .tabbar { max-width: 520px; margin: 0 auto; }
 }
+
+/* Переменные, нужные вкладке «Аналитика» (в теме АСУ МД их не было). */
+:root {
+  --color-green: #1f7a43; --color-green-bg: #e8f6ee;
+  --color-red: #c0392b;   --color-red-bg: #fdeceb;
+  --color-chip: #eef2f6;
+  --color-accent-bg: #e6f3fd;
+  --color-gray: #d6ecfd;
+  --color-field-border: #d6ecfd;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+}
+
+/* ---------- Вкладка «Аналитика»: движение жилого фонда ---------- */
+.switch { display: flex; gap: 3px; padding: 3px; background: var(--color-line); border-radius: var(--radius-md, 10px); }
+.switch button { flex: 1; height: 34px; border: 0; border-radius: var(--radius-sm, 8px); background: transparent; color: var(--color-text-secondary); font-size: 14px; font-weight: 500; font-family: inherit; white-space: nowrap; cursor: pointer; }
+.switch button.on { background: var(--color-surface); color: var(--color-text); box-shadow: 0 1px 2px rgba(20, 31, 41, 0.12); }
+
+.tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--color-line); padding: 0 2px; }
+.tabs button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 6px 0 10px; font-size: 15px; font-weight: 500; font-family: inherit; color: var(--color-text-secondary); cursor: pointer; }
+.tabs button.on { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.kpi-grid.two { grid-template-columns: 1fr 1fr; gap: 10px; }
+.kpi { background: var(--color-surface); border-radius: var(--radius-lg, var(--radius-card)); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.kpi.flat { padding: 10px 12px; border-radius: var(--radius-md, 10px); }
+.kpi.green { background: var(--color-green-bg); }
+.kpi.red { background: var(--color-red-bg); }
+.kpi.green .kpi-label, .kpi.green .kpi-value, .kpi.green .kpi-sub { color: var(--color-green); }
+.kpi.red .kpi-label, .kpi.red .kpi-value, .kpi.red .kpi-sub { color: var(--color-red); }
+.kpi-label { font-size: 12px; color: var(--color-text-secondary); }
+.kpi-value { font-size: 20px; font-weight: 500; }
+.kpi.flat .kpi-value { font-size: 16px; }
+.kpi-sub { font-size: 13px; font-weight: 500; }
+
+.green { color: var(--color-green); }
+.red { color: var(--color-red); }
+.muted { color: var(--color-text-secondary); }
+.small { font-size: 12px; }
+.xxl { font-size: 28px; }
+.note { margin: 0; font-size: 12px; color: var(--color-text-secondary); line-height: 1.45; }
+.err { margin: 0; font-size: 12px; color: var(--color-red); }
+
+.card-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.card-row.totals b { font-size: 22px; font-weight: 500; }
+.card-row.totals > div { flex: 1; }
+.card-row.balance-row b { font-size: 28px; font-weight: 500; }
+.card-row.balance-row b + b { font-size: 14px; }
+.group-title { font-size: 16px; font-weight: 500; }
+.uk-line { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.badge { font-size: 13px; font-weight: 500; padding: 5px 9px; border-radius: 8px; background: var(--color-chip); white-space: nowrap; }
+.badge.green { background: var(--color-green-bg); }
+.badge.red { background: var(--color-red-bg); }
+
+.list-card { padding: 0; gap: 0; overflow: hidden; }
+.list-card-head { font-size: 17px; font-weight: 500; padding: 16px 16px 10px; }
+.list-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--color-line); }
+.list-card > .list-row:first-child { border-top: 0; }
+.list-row-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.list-row-title { font-size: 15px; font-weight: 500; }
+.list-row-sub { font-size: 12px; color: var(--color-text-secondary); }
+.list-row-values { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-size: 15px; font-weight: 500; }
+.list-row-values span { font-size: 12px; }
+.list-total { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px; background: var(--color-accent-bg); font-size: 15px; font-weight: 500; }
+
+.chart { display: flex; flex-direction: column; gap: 8px; }
+.chart-legend { display: flex; align-items: center; gap: 14px; font-size: 12px; color: var(--color-text-secondary); }
+.chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.chart-legend .dot { width: 10px; height: 10px; border-radius: 2px; }
+.chart-legend .dot.green { background: var(--color-green); }
+.chart-legend .dot.red { background: var(--color-red); }
+.chart-legend .dash { width: 14px; height: 2px; background: var(--color-text-secondary); }
+.chart-unit { margin-left: auto; }
+.chart-body { display: flex; gap: 4px; }
+.chart-axis { width: 30px; height: 160px; position: relative; font-size: 10px; color: var(--color-text-muted); }
+.chart-axis span { position: absolute; left: 0; }
+.chart-axis span:first-child { top: 0; }
+.chart-axis .zero { top: 63px; }
+.chart-axis span:last-child { bottom: 0; }
+.chart-scroll { flex: 1; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.chart-labels { display: flex; }
+.chart-label { font-size: 10px; color: var(--color-text-secondary); text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.balance { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: var(--color-line); }
+.balance i.green { background: var(--color-green); }
+.balance i.red { background: var(--color-red); }
+.minibars { display: flex; flex-direction: column; gap: 4px; }
+.minibar { display: flex; align-items: center; gap: 8px; }
+.minibar-label { width: 54px; font-size: 11px; color: var(--color-text-secondary); }
+.minibar-track { flex: 1; height: 8px; border-radius: 4px; background: var(--color-chip); overflow: hidden; }
+.minibar-track i { display: block; height: 8px; }
+.minibar-track i.green { background: var(--color-green); }
+.minibar-track i.red { background: var(--color-red); }
+.minibar-value { width: 86px; text-align: right; font-size: 11px; font-weight: 500; }
+
+.sheet-body { padding: 14px 16px 0; display: flex; flex-direction: column; gap: 12px; }
+.sheet-foot { padding: 16px 16px 0; }
+.sheet-opt .opt-sub { display: block; font-size: 12px; font-style: normal; color: var(--color-text-secondary); margin-top: 2px; }
+.sheet-opt .opt-check { color: var(--color-accent); font-size: 18px; }
+.date-picks { display: flex; gap: 10px; }
+.date-pick { flex: 1; min-height: 52px; padding: 8px 12px; border-radius: var(--radius-md, 10px); border: 1px solid var(--color-field-border, var(--color-line)); background: var(--color-field); color: var(--color-text); text-align: left; font-family: inherit; cursor: pointer; }
+.date-pick.on { border-color: var(--color-accent); background: var(--color-accent-bg); }
+.date-pick span { display: block; font-size: 12px; color: var(--color-text-secondary); }
+.date-pick b { font-size: 15px; font-weight: 500; }
+
+.calendar { display: flex; flex-direction: column; gap: 8px; }
+.calendar-head { display: flex; align-items: center; justify-content: space-between; }
+.calendar-title { font-size: 15px; font-weight: 500; }
+.calendar-nav { width: 40px; height: 36px; border: 0; border-radius: var(--radius-sm, 8px); background: var(--color-chip); color: var(--color-accent); font-size: 20px; line-height: 1; cursor: pointer; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+.calendar-weekday { text-align: center; font-size: 11px; color: var(--color-text-secondary); }
+.calendar-day { height: 38px; border: 0; background: transparent; color: var(--color-text); font-size: 14px; font-family: inherit; border-radius: 19px; cursor: pointer; }
+.calendar-day.selected { background: var(--color-accent); color: #fff; font-weight: 500; }
+.calendar-day:disabled { opacity: 0.3; cursor: default; }
+.calendar-day.empty { pointer-events: none; }

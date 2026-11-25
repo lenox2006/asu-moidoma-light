@@ -59,6 +59,14 @@ async function request(method, url, body) {
   return data;
 }
 
+/** Строка запроса из набора параметров, пустые значения не отправляем. */
+function qs(params) {
+  return Object.entries(params || {})
+    .filter(([, v]) => v !== undefined && v !== null && v !== '')
+    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+    .join('&');
+}
+
 export const api = {
   login: (login, password) => request('POST', '/api/auth/login', { login, password }),
   logout: () => request('POST', '/api/auth/logout'),
@@ -66,6 +74,8 @@ export const api = {
 
   houses: (mark) => request('GET', `/api/houses?mark=${encodeURIComponent(mark || '')}`).then(normalizeNames),
   houseCard: (buildId, mark) => request('GET', `/api/houses/card?build_id=${encodeURIComponent(buildId)}&mark=${encodeURIComponent(mark || '')}`).then(normalizeNames),
+
+  analytics: (params) => request('GET', `/api/analytics/housing-movement?${qs(params)}`),
 
   users: () => request('GET', '/api/users'),
   createUser: (payload) => request('POST', '/api/users', payload),

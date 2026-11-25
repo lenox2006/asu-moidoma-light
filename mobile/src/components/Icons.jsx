@@ -14,6 +14,7 @@ export const Filter = () => <svg {...b} width={22} height={22}><path d="M4 6h16"
 export const Plus = () => <svg {...b} width={22} height={22} strokeWidth={2.2}><path d="M12 5v14" /><path d="M5 12h14" /></svg>;
 export const Close = () => <svg {...b} width={14} height={14} strokeWidth={2.4}><path d="M6 6l12 12" /><path d="M18 6L6 18" /></svg>;
 export const Check = () => <svg {...b} width={22} height={22} stroke="#20a0ff" strokeWidth={2.4}><path d="M5 12l5 5L20 7" /></svg>;
+export const Chart = () => <svg {...b} strokeWidth={1.9}><path d="M4 20V10" /><path d="M10 20V4" /><path d="M16 20v-7" /><path d="M21 20H3" /></svg>;
 export const Home = () => <svg {...b}><path d="M3 11 12 4l9 7" /><path d="M5 10v10h14V10" /><path d="M10 20v-6h4v6" /></svg>;
 export const Users = () => <svg {...b}><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><circle cx="17" cy="9" r="2.5" /><path d="M16 14.5c3 0 5.5 2 5.5 5" /></svg>;
 export const Person = () => <svg {...b}><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" /></svg>;

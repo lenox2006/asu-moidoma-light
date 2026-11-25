@@ -18,6 +18,7 @@ export const Search = () => <I d={P.search} size={22} vb={24} style={{ color: '#
 
 const s = { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true };
 export const Chevron = () => <svg {...s} width={20} height={20} strokeWidth={2}><path d="M9 6l6 6-6 6" /></svg>;
+export const Chart = () => <svg {...s} width={26} height={26} strokeWidth={1.9}><path d="M4 20V10" /><path d="M10 20V4" /><path d="M16 20v-7" /><path d="M21 20H3" /></svg>;
 export const Export = () => <svg {...s} width={22} height={22}><path d="M12 16V4" /><path d="M8 8l4-4 4 4" /><path d="M4 20h16" /></svg>;
 export const Filter = () => <svg {...s} width={22} height={22}><path d="M4 6h16" /><path d="M7 12h10" /><path d="M10 18h4" /></svg>;
 export const Plus = () => <svg {...s} width={22} height={22} strokeWidth={2.2}><path d="M12 5v14" /><path d="M5 12h14" /></svg>;
